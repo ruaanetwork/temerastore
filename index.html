@@ -3,108 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر تيميرا</title>
+    <meta name="description" content="متجر تيميرا الإلكتروني - نحن نعمل على تجربة تسوق فريدة. سجل بريدك لتحصل على إشعار الافتتاح.">
+    <title>متجر تيميرا - قريباً إن شاء الله</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            text-align: center;
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-color);
+            text-align: center;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100dvh;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .content-box {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 3rem 2rem;
+            width: 100%;
             max-width: 800px;
-            width: 90%;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .content-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
         }
         
         .logo {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #4a6fa5;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo img {
+            max-height: 80px;
+        }
+        
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: right;
+            animation: underlineGrow 1.5s ease-out forwards;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 500;
         }
         
         .coming-soon {
             font-size: 2rem;
-            margin-bottom: 30px;
-            color: #e74c3c;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            animation: pulse 2s infinite;
         }
         
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
         
         .countdown-item {
-            background-color: #4a6fa5;
+            background-color: var(--primary-color);
             color: white;
-            padding: 15px;
-            border-radius: 5px;
-            min-width: 80px;
+            padding: 1.5rem 1rem;
+            border-radius: 8px;
+            min-width: 90px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
         .countdown-number {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
         }
         
         .countdown-label {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            opacity: 0.9;
         }
         
         .message {
             font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
+            line-height: 1.8;
         }
         
         .notify-form {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
         }
         
-        input[type="email"] {
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: 250px;
+        .form-group {
+            position: relative;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
         }
         
         button {
-            background-color: #e74c3c;
+            background: linear-gradient(135deg, var(--secondary-color), #f39c12);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
         }
         
         button:hover {
-            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
         }
         
-        @media (max-width: 600px) {
+        button:active {
+            transform: translateY(0);
+        }
+        
+
+        
+        .footer {
+            margin-top: 3rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes underlineGrow {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 1.5rem;
             }
             
-            .logo {
+            .content-box {
+                padding: 2rem 1.5rem;
+            }
+            
+            .logo-text {
                 font-size: 2rem;
             }
             
@@ -112,100 +249,209 @@
                 font-size: 1.5rem;
             }
             
-            .countdown {
-                flex-wrap: wrap;
-            }
-            
             .countdown-item {
                 min-width: 70px;
+                padding: 1rem 0.5rem;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+            
+            .message {
+                font-size: 1rem;
             }
             
             .notify-form {
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .form-group {
+                max-width: 100%;
+            }
+            
+            button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">Temera Store | متجر تيميرا</div>
-        <div class="coming-soon">قريباً إن شاء الله</div>
-        
-        <div class="countdown">
-            <div class="countdown-item">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">أيام</div>
+        <div class="content-box">
+            <div class="logo">
+                <!-- Replace with your actual logo -->
+                <div class="logo-text">Temera Store</div>
+                <div class="subtitle">متجر تيميرا الإلكتروني</div>
             </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">ساعات</div>
+            
+            <div class="coming-soon">قريباً إن شاء الله</div>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">أيام</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">ساعات</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">دقائق</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">ثواني</div>
+                </div>
             </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">دقائق</div>
+            
+            <div class="message">
+                نحن نعمل على إطلاق متجر تيميرا الإلكتروني بتجربة تسوق فريدة ومميزة. سجل بريدك الإلكتروني الآن لتحصل على إشعار الافتتاح وعروض حصرية لأول 1000 مشترك.
             </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">ثواني</div>
-            </div>
+            
+            <form class="notify-form" id="notificationForm">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="بريدك الإلكتروني" required>
+                </div>
+                <button type="submit" id="submitBtn">أخبرني عند الافتتاح</button>
+            </form>
+            
+      
         </div>
         
-        <div class="message">
-            نحن نعمل بجد لإطلاق متجرنا الإلكتروني. سجل بريدك الإلكتروني ليصلك إشعار عند الافتتاح!
-        </div>
-        
-        <div class="notify-form">
-            <input type="email" placeholder="بريدك الإلكتروني" required>
-            <button type="submit">أخبرني عند الافتتاح</button>
+        <div class="footer">
+            &copy; 2025 متجر تيميرا. جميع الحقوق محفوظة.
         </div>
     </div>
 
     <script>
-        // Set the date we're counting down to (1 month from now)
-        const countDownDate = new Date();
-        countDownDate.setMonth(countDownDate.getMonth() + 1);
-        
-        // Update the countdown every 1 second
-        const countdownFunction = setInterval(function() {
-            // Get today's date and time
-            const now = new Date().getTime();
+        // Enhanced countdown with localStorage for persistence
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set countdown to 1 month from first visit (persists across page refreshes)
+            let countDownDate = localStorage.getItem('temeraCountdownDate');
             
-            // Find the distance between now and the countdown date
-            const distance = countDownDate - now;
-            
-            // Time calculations for days, hours, minutes and seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // Display the result
-            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-            
-            // If the countdown is finished, display a message
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("days").innerHTML = "00";
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
-                document.querySelector(".coming-soon").innerHTML = "لقد وصلنا!";
-            }
-        }, 1000);
-        
-        // Simple form handling
-        document.querySelector('button').addEventListener('click', function() {
-            const email = document.querySelector('input[type="email"]').value;
-            if (email && email.includes('@')) {
-                alert('شكراً لتسجيلك! سنخبرك عند الافتتاح.');
-                document.querySelector('input[type="email"]').value = '';
+            if (!countDownDate) {
+                countDownDate = new Date();
+                countDownDate.setMonth(countDownDate.getMonth() + 1);
+                localStorage.setItem('temeraCountdownDate', countDownDate);
             } else {
-                alert('الرجاء إدخال بريد إلكتروني صحيح.');
+                countDownDate = new Date(countDownDate);
             }
+            
+            // Update countdown every second
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown(); // Initial call
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+                
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.querySelector('.coming-soon').textContent = 'لقد وصلنا!';
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            // Enhanced form handling
+            const form = document.getElementById('notificationForm');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value.trim();
+                
+                if (!validateEmail(email)) {
+                    showAlert('الرجاء إدخال بريد إلكتروني صحيح', 'error');
+                    return;
+                }
+                
+                // Simulate form submission
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'جاري الإرسال...';
+                
+                // In a real implementation, you would send this to your server
+                setTimeout(() => {
+                    showAlert('شكراً لتسجيلك! سنقوم بإعلامك عند الافتتاح.', 'success');
+                    submitBtn.textContent = 'تم الإرسال بنجاح';
+                    form.reset();
+                    
+                    // Store email in localStorage
+                    let subscribers = JSON.parse(localStorage.getItem('temeraSubscribers') || '[]');
+                    subscribers.push(email);
+                    localStorage.setItem('temeraSubscribers', JSON.stringify(subscribers));
+                    
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'أخبرني عند الافتتاح';
+                    }, 3000);
+                }, 1500);
+            });
+            
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            function showAlert(message, type) {
+                // Remove any existing alerts
+                const existingAlert = document.querySelector('.alert');
+                if (existingAlert) existingAlert.remove();
+                
+                const alert = document.createElement('div');
+                alert.className = `alert alert-${type}`;
+                alert.textContent = message;
+                alert.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 25px;
+                    background-color: ${type === 'error' ? '#e74c3c' : '#2ecc71'};
+                    color: white;
+                    border-radius: 5px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    animation: fadeInOut 3s ease-in-out;
+                    z-index: 1000;
+                `;
+                
+                document.body.appendChild(alert);
+                
+                setTimeout(() => {
+                    alert.style.animation = 'fadeOut 0.5s ease-out forwards';
+                    setTimeout(() => alert.remove(), 500);
+                }, 2500);
+            }
+            
+            // Add CSS for alert animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translateY(-20px); }
+                    10% { opacity: 1; transform: translateY(0); }
+                    90% { opacity: 1; transform: translateY(0); }
+                    100% { opacity: 0; transform: translateY(-20px); }
+                }
+                @keyframes fadeOut {
+                    to { opacity: 0; transform: translateY(-20px); }
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
