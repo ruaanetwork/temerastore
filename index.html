@@ -1,23 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>متجر تيميرا</title>
     <style>
-        body{
-            height: 100dvh;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4a6fa5;
+            margin-bottom: 20px;
+        }
+        
+        .coming-soon {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #e74c3c;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .countdown-item {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            min-width: 80px;
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .notify-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        input[type="email"] {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 250px;
+        }
+        
+        button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #c0392b;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .coming-soon {
+                font-size: 1.5rem;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+            }
+            
+            .notify-form {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
-    <title>Temera Store</title>
 </head>
 <body>
-    <h1>Temera Store</h1>
-    <h2>متجر تيميرا</h2>
-    <p>Coming Soon!</p>
+    <div class="container">
+        <div class="logo">Temera Store | متجر تيميرا</div>
+        <div class="coming-soon">قريباً إن شاء الله</div>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">أيام</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">ساعات</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">دقائق</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">ثواني</div>
+            </div>
+        </div>
+        
+        <div class="message">
+            نحن نعمل بجد لإطلاق متجرنا الإلكتروني. سجل بريدك الإلكتروني ليصلك إشعار عند الافتتاح!
+        </div>
+        
+        <div class="notify-form">
+            <input type="email" placeholder="بريدك الإلكتروني" required>
+            <button type="submit">أخبرني عند الافتتاح</button>
+        </div>
+    </div>
+
+    <script>
+        // Set the date we're counting down to (1 month from now)
+        const countDownDate = new Date();
+        countDownDate.setMonth(countDownDate.getMonth() + 1);
+        
+        // Update the countdown every 1 second
+        const countdownFunction = setInterval(function() {
+            // Get today's date and time
+            const now = new Date().getTime();
+            
+            // Find the distance between now and the countdown date
+            const distance = countDownDate - now;
+            
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the result
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            
+            // If the countdown is finished, display a message
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+                document.querySelector(".coming-soon").innerHTML = "لقد وصلنا!";
+            }
+        }, 1000);
+        
+        // Simple form handling
+        document.querySelector('button').addEventListener('click', function() {
+            const email = document.querySelector('input[type="email"]').value;
+            if (email && email.includes('@')) {
+                alert('شكراً لتسجيلك! سنخبرك عند الافتتاح.');
+                document.querySelector('input[type="email"]').value = '';
+            } else {
+                alert('الرجاء إدخال بريد إلكتروني صحيح.');
+            }
+        });
+    </script>
 </body>
 </html>
